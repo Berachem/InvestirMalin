@@ -1,125 +1,429 @@
 import 'package:flutter/material.dart';
 
+import 'entity/investment.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(InvestirMalinApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class InvestirMalinApp extends StatelessWidget {
+  const InvestirMalinApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return const MaterialApp(
+      title: 'InvestirMalin',
+      home: HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: const Text('InvestirMalin - Où investir ?'),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Icon(
+              Icons.monetization_on,
+              size: 100,
+              color: Colors.blue,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            const SizedBox(height: 16.0),
+            const Text(
+              'Bienvenue sur InvestirMalin !',
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 16.0),
+            const Text(
+              'Vous êtes novice en matière d\'investissement ? Pas de soucis ! Notre application est là pour vous guider dans vos choix d\'investissement.',
+              style: TextStyle(fontSize: 18.0),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 32.0),
+            ElevatedButton(
+              onPressed: () {
+                // Naviguer vers la page de comparaison des options d'investissement
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ComparaisonPage()),
+                );
+              },
+              child: const Text('Comparer les options d\'investissement'),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+
+
+
+class ComparaisonPage extends StatelessWidget {
+final List<Investment> optionsInvestissement = [
+  Investment(
+    name: 'Crypto-monnaies',
+    description: 'Investissez dans les cryptomonnaies pour profiter des hausses de prix.',
+    icon: Icons.attach_money,
+    popularity: 80.0,
+    riskLevel: 'Élevé',
+    potentialReturn: 100.0,
+    timeHorizon: 'Court terme',
+    minimumInvestment: 1000.0,
+    currency: 'EUR',
+    restrictions: 'Aucune',
+    taxBenefits: 'Aucun',
+    investmentFirm: 'Nom de la société de gestion',
+  ),
+  Investment(
+    name: 'PEL (Plan d\'Épargne Logement)',
+    description: 'Placez votre argent dans un PEL pour épargner à moyen terme et obtenir des avantages fiscaux.',
+    icon: Icons.home,
+    popularity: 70.0,
+    riskLevel: 'Faible',
+    potentialReturn: 50.0,
+    timeHorizon: 'Moyen terme',
+    minimumInvestment: 500.0,
+    currency: 'EUR',
+    restrictions: 'Aucune',
+    taxBenefits: 'Réduction d\'impôt',
+    investmentFirm: 'Nom de la société de gestion',
+  ),
+  Investment(
+    name: 'PEA (Plan d\'Épargne en Actions)',
+    description: 'Investissez dans des actions en utilisant un PEA pour profiter d\'avantages fiscaux sur les plus-values.',
+    icon: Icons.bar_chart,
+    popularity: 60.0,
+    riskLevel: 'Moyen',
+    potentialReturn: 80.0,
+    timeHorizon: 'Moyen terme',
+    minimumInvestment: 100.0,
+    currency: 'EUR',
+    restrictions: 'Actions européennes uniquement',
+    taxBenefits: 'Exonération d\'impôt sur les plus-values',
+    investmentFirm: 'Nom de la société de gestion',
+  ),
+  Investment(
+    name: 'Investissement immobilier',
+    description: 'Achetez des biens immobiliers pour générer des revenus locatifs ou réaliser des plus-values à long terme.',
+    icon: Icons.business,
+    popularity: 75.0,
+    riskLevel: 'Moyen',
+    potentialReturn: 70.0,
+    timeHorizon: 'Long terme',
+    minimumInvestment: 5000.0,
+    currency: 'EUR',
+    restrictions: 'Aucune',
+    taxBenefits: 'Réduction d\'impôt sur les revenus fonciers',
+    investmentFirm: 'Nom de la société de gestion immobilière',
+  ),
+  Investment(
+    name: 'Marché boursier',
+    description: 'Investissez dans des actions d\'entreprises cotées en bourse pour bénéficier des performances du marché.',
+    icon: Icons.trending_up,
+    popularity: 85.0,
+    riskLevel: 'Élevé',
+    potentialReturn: 120.0,
+    timeHorizon: 'Moyen terme',
+    minimumInvestment: 200.0,
+    currency: 'EUR',
+    restrictions: 'Aucune',
+    taxBenefits: 'Aucun',
+    investmentFirm: 'Nom de la société de courtage',
+  ),
+  Investment(
+    name: 'Fonds communs de placement (FCP)',
+    description: 'Placez votre argent dans un portefeuille diversifié géré par des professionnels.',
+    icon: Icons.account_balance_wallet,
+    popularity: 65.0,
+    riskLevel: 'Moyen',
+    potentialReturn: 60.0,
+    timeHorizon: 'Moyen terme',
+    minimumInvestment: 100.0,
+    currency: 'EUR',
+    restrictions: 'Aucune',
+    taxBenefits: 'Aucun',
+    investmentFirm: 'Nom de la société de gestion de fonds',
+  ),
+  Investment(
+    name: 'Marché des matières premières',
+    description: 'Investissez dans des matières premières telles que l\'or, le pétrole, etc., pour diversifier votre portefeuille.',
+    icon: Icons.grain,
+    popularity: 50.0,
+    riskLevel: 'Moyen',
+    potentialReturn: 40.0,
+    timeHorizon: 'Moyen terme',
+    minimumInvestment: 500.0,
+    currency: 'USD',
+    restrictions: 'Aucune',
+    taxBenefits: 'Aucun',
+    investmentFirm: 'Nom de la société de courtage en matières premières',
+  ),
+  Investment(
+    name: 'Cryptomonnaies stables',
+    description: 'Investissez dans des cryptomonnaies stables indexées sur des devises fiduciaires pour limiter la volatilité.',
+    icon: Icons.monetization_on,
+    popularity: 70.0,
+    riskLevel: 'Faible',
+    potentialReturn: 90.0,
+    timeHorizon: 'Court terme',
+    minimumInvestment: 500.0,
+    currency: 'USD',
+    restrictions: 'Aucune',
+    taxBenefits: 'Aucun',
+    investmentFirm: 'Nom de la société de gestion',
+  ),
+  Investment(
+    name: 'Investissement dans les obligations',
+    description: 'Investissez dans des obligations d\'État ou d\'entreprise pour générer des revenus fixes.',
+    icon: Icons.money,
+    popularity: 60.0,
+    riskLevel: 'Faible',
+    potentialReturn: 40.0,
+    timeHorizon: 'Court terme',
+    minimumInvestment: 100.0,
+    currency: 'EUR',
+    restrictions: 'Aucune',
+    taxBenefits: 'Exonération d\'impôt sur les intérêts des obligations d\'État',
+    investmentFirm: 'Nom de la société de gestion',
+  ),
+  // Ajoutez d'autres options d'investissement ici
+];
+
+   ComparaisonPage({super.key});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Options d\'investissement'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SizedBox(height: 16.0),
+            Expanded(
+              child: ListView.builder(
+                itemCount: optionsInvestissement.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    onTap: () => {
+                      // Naviguer vers la page de détails de l'option d'investissement
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => DetailsPage(optionInvestissement: optionsInvestissement[index])),
+                      ),
+                    },
+                    leading: Icon(optionsInvestissement[index].icon),
+                    title: Text(optionsInvestissement[index].name),
+                    subtitle: Text(optionsInvestissement[index].description),
+                    trailing: Text('${optionsInvestissement[index].popularity}%',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    // Vous pouvez ajouter des actions lorsqu'un utilisateur clique sur une option d'investissement ici
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class DetailsPage extends StatefulWidget {
+  final Investment optionInvestissement;
+
+  // Constructeur de la classe DetailsPage prenant en paramètre une instance d'Investment
+  DetailsPage({required this.optionInvestissement});
+
+  @override
+  _DetailsPageState createState() => _DetailsPageState();
+}
+
+class _DetailsPageState extends State<DetailsPage> {
+  double _potentialReturn = 0.0;
+  double _minimumInvestment = 0.0;
+
+  @override
+  void initState() {
+    _potentialReturn = widget.optionInvestissement.potentialReturn;
+    _minimumInvestment = widget.optionInvestissement.minimumInvestment;
+    super.initState();
+  }
+
+
+  Color _getRiskLevelColor(int riskLevel) {
+    if (riskLevel < 25) {
+      return Colors.green;
+    } else if (riskLevel < 50) {
+      return Colors.yellow;
+    } else if (riskLevel < 75) {
+      return Colors.orange;
+    } else {
+      return Colors.red;
+    }
+  }
+
+  Color _getPotentialReturnColor(int potentialReturn) {
+    if (potentialReturn < 25) {
+      return Colors.red;
+    } else if (potentialReturn < 50) {
+      return Colors.orange;
+    } else if (potentialReturn < 75) {
+      return Colors.yellow;
+    } else {
+      return Colors.green;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Détails de l\'option d\'investissement'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Icon(
+              widget.optionInvestissement.icon,
+              size: 100,
+              color: Colors.blue,
+            ),
+            SizedBox(height: 16.0),
+            Text(
+              widget.optionInvestissement.name,
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 16.0),
+            Text(
+              widget.optionInvestissement.description,
+              style: TextStyle(fontSize: 18.0),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 32.0),
+            Text(
+              'Popularité : ${widget.optionInvestissement.popularity}%',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+  Slider(
+              activeColor: _getPotentialReturnColor(widget.optionInvestissement.popularity.toInt()),
+              value: widget.optionInvestissement.popularity,
+              onChanged: (newValue) {
+                setState(() {
+                  //_potentialReturn = newValue;
+                });
+              },
+              min: 0,
+              max: 100,
+            ),
+
+            Text(
+              'Niveau de risque : ${widget.optionInvestissement.riskLevel}',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              'Potentiel de rendement : ${_potentialReturn.toStringAsFixed(2)}%',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Slider(
+              activeColor: _getRiskLevelColor(widget.optionInvestissement.potentialReturn.toInt()),
+              value: _potentialReturn,
+              onChanged: (newValue) {
+                setState(() {
+                  //_potentialReturn = newValue;
+                });
+              },
+              min: 0,
+              max: 100,
+            ),
+            Text(
+              'Horizon temporel : ${widget.optionInvestissement.timeHorizon}',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              'Investissement minimum : ${_minimumInvestment.toStringAsFixed(2)} ${widget.optionInvestissement.currency}',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Slider(
+              activeColor: _getRiskLevelColor(widget.optionInvestissement.minimumInvestment.toInt()),
+              value: _minimumInvestment,
+              onChanged: (newValue) {
+                setState(() {
+                  //_minimumInvestment = newValue;
+                });
+              },
+              min: 0,
+              max: 5000,
+            ),
+            Text(
+              'Restrictions : ${widget.optionInvestissement.restrictions}',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              'Avantages fiscaux : ${widget.optionInvestissement.taxBenefits}',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              'Société de gestion : ${widget.optionInvestissement.investmentFirm}',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            // Vous pouvez afficher d'autres détails de l'option d'investissement ici
+          ],
+        ),
+      ),
     );
   }
 }
