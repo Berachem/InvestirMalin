@@ -2,7 +2,27 @@
 
 InvestirMalin is a Flutter application that allows you to compare different investment options to make informed decisions about your finances and investments. You can compare various asset classes, such as stocks, bonds, mutual funds, savings accounts, real estate, and more.
 
-## Key Features
+## Screenshots 📱
+
+<table border="0">
+    <tr>
+        <td>
+            <img src="https://i.ibb.co/2NzBBF4/image.png" height="800" width="500">
+            ____________________________________
+        </td>
+        <td>
+            <img src="https://i.ibb.co/0hP7HcH/image.png"  height="800" width="400">
+            ______________________________________________
+        </td>
+        <td>
+            <img src="https://i.ibb.co/XDZSdHZ/image.png"  height="800" width="400">
+            ______________________________________________
+        </td>
+    </tr>
+</table>
+
+
+## Key Features 🔑
 
 - **Investment Options Comparison:** Explore an extensive list of investment options and compare their features, historical performances, risk levels, associated fees, recommended investment horizons, and pros and cons.
 
@@ -13,5 +33,6 @@ InvestirMalin is a Flutter application that allows you to compare different inve
 - **Reviews and Ratings:** Read reviews and ratings left by other users about investment options to share experiences and insights.
 
 - **Financial News Feed:** Stay informed about the latest financial news and market trends that might influence your investment decisions.
+
 
  
