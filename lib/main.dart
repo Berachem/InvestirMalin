@@ -1,9 +1,11 @@
+import 'package:bitcoin_icons/bitcoin_icons.dart';
 import 'package:emojis/emojis.dart';
 import 'package:flutter/material.dart';
 import 'package:invest/presentation/UI/backArrow.dart';
 import 'package:invest/presentation/UI/cardMoreInvestments.dart';
 import 'package:invest/presentation/UI/creditCard.dart';
 import 'package:invest/presentation/UI/infoBannerActions.dart';
+import 'package:invest/presentation/UI/listViewCard.dart';
 import 'package:invest/presentation/UI/searchBar.dart';
 
 import 'entity/investment.dart';
@@ -126,7 +128,7 @@ class _ComparaisonPageState extends State<ComparaisonPage> {
       name: 'Crypto-monnaies',
       description:
           'Investissez dans les cryptomonnaies pour profiter des hausses de prix.',
-      icon: Icons.attach_money,
+      icon: const Icon(BitcoinIcons.bitcoin_circle).icon!,
       popularity: 80.0,
       riskLevel: 'Élevé',
       potentialReturn: 100.0,
@@ -136,6 +138,17 @@ class _ComparaisonPageState extends State<ComparaisonPage> {
       restrictions: 'Aucune',
       taxBenefits: 'Aucun',
       investmentFirm: 'Nom de la société de gestion',
+      websites: [
+        WebSite(
+            "https://companieslogo.com/img/orig/COIN-a63dbab3.png?t=1648737284",
+            "Coinbase",
+            "Achetez et vendez des cryptomonnaies"),
+        WebSite(
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Binance_Logo.svg/1200px-Binance_Logo.svg.png",
+            "Binance",
+            "Achetez et vendez des cryptomonnaies"),
+  
+      ],
     ),
     Investment(
       name: 'PEL (Plan d\'Épargne Logement)',
@@ -432,7 +445,9 @@ class DetailsPage extends StatelessWidget {
                         Colors.black,
                         Colors.blue),
                     //_buildDetailsRow('Société de gestion', optionInvestissement.investmentFirm, Colors.black, Colors.blue),
-                    // Vous pouvez afficher d'autres détails de l'option d'investissement ici
+                    const SizedBox(height: 8.0),
+                    CardListView(websites: optionInvestissement.websites),
+                    
                   ],
                 ),
               ),
@@ -441,23 +456,7 @@ class DetailsPage extends StatelessWidget {
         ],
       ),
       backgroundColor: Colors.grey[200],
-      persistentFooterButtons: [
-        TextButton(
-          onPressed: () {
-            // Ajouter l'option d'investissement à la liste des options d'investissement favorites
-            print(
-                'Option d\'investissement ajoutée aux favoris : ${optionInvestissement.name}');
-          },
-          child: const Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(Icons.favorite_border),
-              SizedBox(width: 8.0),
-              Text('Ajouter aux favoris'),
-            ],
-          ),
-        ),
-      ],
+     
     );
   }
 

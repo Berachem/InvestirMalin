@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:invest/presentation/UI/listViewCard.dart';
 
 class Investment {
   final String name;
@@ -13,6 +14,7 @@ class Investment {
   final String restrictions;
   final String taxBenefits;
   final String investmentFirm;
+  List<WebSite> websites;
 
   Investment({
     required this.name,
@@ -27,5 +29,7 @@ class Investment {
     required this.restrictions,
     required this.taxBenefits,
     required this.investmentFirm,
-  });
+    List<WebSite>? websites,
+  }) : this.websites = websites ?? [];
+
 }
