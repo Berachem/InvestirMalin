@@ -7,15 +7,15 @@ InvestirMalin is a Flutter application that allows you to compare different inve
 <table border="0">
     <tr>
         <td>
-            <img src="https://i.ibb.co/2NzBBF4/image.png" height="800" width="500">
+            <img src="https://github.com/Berachem/InvestirMalin/assets/61350744/95b99120-eec2-4a3c-a40c-3506565e8b82" height="800" >
             ____________________________________
         </td>
         <td>
-            <img src="https://i.ibb.co/0hP7HcH/image.png"  height="800" width="400">
+            <img src="https://github.com/Berachem/InvestirMalin/assets/61350744/844d80eb-a649-4935-8c2b-60da524e8035"  height="800" >
             ______________________________________________
         </td>
         <td>
-            <img src="https://i.ibb.co/XDZSdHZ/image.png"  height="800" width="400">
+            <img src="https://github.com/Berachem/InvestirMalin/assets/61350744/e80fed96-edd1-4264-be88-1e25f48123c5"  height="800" >
             ______________________________________________
         </td>
     </tr>
