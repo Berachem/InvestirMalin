@@ -1,3 +1,5 @@
+  <img src="https://github.com/Berachem/InvestirMalin/assets/61350744/41995633-0083-4e6b-b36b-21a3fb558d93" >
+
 # InvestirMalin - Investment Options Comparison App 💶
 
 InvestirMalin is a Flutter application that allows you to compare different investment options to make informed decisions about your finances and investments. You can compare various asset classes, such as stocks, bonds, mutual funds, savings accounts, real estate, and more.
@@ -6,16 +8,12 @@ InvestirMalin is a Flutter application that allows you to compare different inve
 
 <table border="0">
     <tr>
-        <td>  
-            <img src="https://github.com/Berachem/InvestirMalin/assets/61350744/41995633-0083-4e6b-b36b-21a3fb558d93" >
-            _____________________________________________
-        </td>
         <td>
-            <img src="https://github.com/Berachem/InvestirMalin/assets/61350744/844d80eb-a649-4935-8c2b-60da524e8035"  height="800" width="500">
+            <img src="https://github.com/Berachem/InvestirMalin/assets/61350744/844d80eb-a649-4935-8c2b-60da524e8035"  height="800" width="350">
             ______________________________________________
         </td>
         <td>
-            <img src="https://github.com/Berachem/InvestirMalin/assets/61350744/e80fed96-edd1-4264-be88-1e25f48123c5"  height="800" width="500">
+            <img src="https://github.com/Berachem/InvestirMalin/assets/61350744/e80fed96-edd1-4264-be88-1e25f48123c5"  height="800" width="350">
             ______________________________________________
         </td>
     </tr>
