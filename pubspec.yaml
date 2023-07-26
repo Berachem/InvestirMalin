@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   emojis: ^0.9.9
   bitcoin_icons: ^0.0.4
+  crypto_market: ^0.0.3
 
 dev_dependencies:
   flutter_test:

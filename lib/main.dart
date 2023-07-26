@@ -8,6 +8,10 @@ import 'package:invest/presentation/UI/infoBannerActions.dart';
 import 'package:invest/presentation/UI/listViewCard.dart';
 import 'package:invest/presentation/UI/searchBar.dart';
 
+import 'package:crypto_market/Crypto_Market/Model/coin_model.dart';
+import 'package:crypto_market/Crypto_Market/Screens/coin_line_chart.dart';
+import 'package:crypto_market/crypto_market.dart';
+
 import 'entity/investment.dart';
 
 void main() {
@@ -125,6 +129,7 @@ class ComparaisonPage extends StatefulWidget {
 class _ComparaisonPageState extends State<ComparaisonPage> {
   final List<Investment> DEFAULToptionsInvestissement = [
     Investment(
+      idName: "crypto",
       name: 'Crypto-monnaies',
       description:
           'Investissez dans les cryptomonnaies pour profiter des hausses de prix.',
@@ -147,10 +152,10 @@ class _ComparaisonPageState extends State<ComparaisonPage> {
             "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Binance_Logo.svg/1200px-Binance_Logo.svg.png",
             "Binance",
             "Achetez et vendez des cryptomonnaies"),
-  
       ],
     ),
     Investment(
+      idName: 'pel',
       name: 'PEL (Plan d\'Épargne Logement)',
       description:
           'Placez votre argent dans un PEL pour épargner à moyen terme et obtenir des avantages fiscaux.',
@@ -166,6 +171,7 @@ class _ComparaisonPageState extends State<ComparaisonPage> {
       investmentFirm: 'Nom de la société de gestion',
     ),
     Investment(
+      idName: 'pea',
       name: 'PEA (Plan d\'Épargne en Actions)',
       description:
           'Investissez dans des actions en utilisant un PEA pour profiter d\'avantages fiscaux sur les plus-values.',
@@ -379,10 +385,13 @@ class DetailsPage extends StatelessWidget {
           Column(
             children: [
               const SizedBox(height: 100.0),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+              Expanded(
+                // padding: const EdgeInsets.fromLTRB(16, 0,16,0),
+                //padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: ListView(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
                   children: [
                     Icon(
                       optionInvestissement.icon,
@@ -447,7 +456,21 @@ class DetailsPage extends StatelessWidget {
                     //_buildDetailsRow('Société de gestion', optionInvestissement.investmentFirm, Colors.black, Colors.blue),
                     const SizedBox(height: 8.0),
                     CardListView(websites: optionInvestissement.websites),
-                    
+
+                  if (optionInvestissement.idName == "crypto")
+
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CryptoMarket()));
+                      },
+                      child: const Text('Marché'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -456,7 +479,6 @@ class DetailsPage extends StatelessWidget {
         ],
       ),
       backgroundColor: Colors.grey[200],
-     
     );
   }
 
@@ -500,5 +522,150 @@ class DetailsPage extends StatelessWidget {
       activeColor: Colors.blue,
       inactiveColor: Colors.grey,
     );
+  }
+}
+
+class CryptoMarket extends StatelessWidget {
+  const CryptoMarket({Key? key});
+
+  @override
+  Widget build(BuildContext context) {
+    List<Coin> coinsList = [
+      Coin(
+        id: '1',
+        image: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1.png',
+        name: 'Bitcoin',
+        shortName: 'BTC',
+        price: '123456',
+        lastPrice: '123456',
+        percentage: '-0.5',
+        symbol: 'BTCUSDT',
+        pairWith: 'USDT',
+        highDay: '567',
+        lowDay: '12',
+        decimalCurrency: 4,
+      ),
+      Coin(
+        id: '2',
+        image: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1.png',
+        name: 'Bitcoin',
+        shortName: 'BTC',
+        price: '123456',
+        lastPrice: '123456',
+        percentage: '-0.5',
+        symbol: 'BTCINR',
+        pairWith: 'INR',
+        highDay: '567',
+        lowDay: '12',
+        decimalCurrency: 4,
+      ),
+      Coin(
+        id: '3',
+        image: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png',
+        name: 'Binance',
+        shortName: 'BNB',
+        price: '0.0005',
+        lastPrice: '0.0005',
+        percentage: '-0.5',
+        symbol: 'BNBBUSD',
+        pairWith: 'BUSD',
+        highDay: '567',
+        lowDay: '12',
+        decimalCurrency: 4,
+      ),
+      Coin(
+        id: '4',
+        image:
+            'https://bin.bnbstatic.com/image/admin_mgs_image_upload/20201110/22ef2baf-b210-4882-afd9-1317bb7a3603.png',
+        name: 'Dogecoin',
+        shortName: 'DOGE',
+        price: '123456',
+        lastPrice: '123456',
+        percentage: '-0.5',
+        symbol: 'DOGEUSDT',
+        pairWith: 'USDT',
+        highDay: '567',
+        lowDay: '12',
+        decimalCurrency: 4,
+      ),
+      Coin(
+        id: '5',
+        image:
+            'https://bin.bnbstatic.com/image/admin_mgs_image_upload/20201110/4766a9cc-8545-4c2b-bfa4-cad2be91c135.png',
+        name: 'XRP',
+        shortName: 'XRP',
+        price: '123456',
+        lastPrice: '123456',
+        percentage: '-0.5',
+        symbol: 'XRPUSDT',
+        pairWith: 'USDT',
+        highDay: '567',
+        lowDay: '12',
+        decimalCurrency: 4,
+      ),
+    ];
+
+    List<Coin> wishlistCoinsList = [
+      Coin(
+        id: '1',
+        image: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png',
+        name: 'Ethereum',
+        shortName: 'ETH',
+        price: '123456',
+        lastPrice: '123456',
+        percentage: '-0.5',
+        symbol: 'ETHUSDT',
+        pairWith: 'USDT',
+        highDay: '567',
+        lowDay: '12',
+        decimalCurrency: 4,
+      )
+    ];
+
+    List<String> currencyList = [
+      'USDT',
+      'INR',
+      'BNB',
+    ];
+
+    List<String> tickerList = [
+      "btcusdt@ticker",
+      "ethusdt@ticker",
+      "winusdt@ticker",
+      "dentusdt@ticker",
+      "xrpusdt@ticker",
+      "etcusdt@ticker",
+      "dogeusdt@ticker",
+      "bnbusdt@ticker",
+      "cakeusdt@ticker",
+      "maticusdt@ticker",
+      "trxusdt@ticker",
+      "usdcusdt@ticker",
+      "sandusdt@ticker",
+      "maticbtc@ticker",
+      "polybtc@ticker",
+      "bnbbtc@ticker",
+      "xrpeth@ticker",
+      "shibusdt@ticker",
+    ];
+
+    return Scaffold(
+        appBar: AppBar(title: const Text("Marché des crypto-monnaies")),
+        body: Container(
+          child: AllCoin(
+            wishlistCoinsList: wishlistCoinsList,
+            coinsList: coinsList,
+            currencyList: currencyList,
+            tickerList: tickerList,
+            showWishlistAtFirst: false,
+            currencyTabSelectedItemColor: const Color.fromARGB(255, 54, 98, 244),
+            currencyTabBackgroundColor: Colors.transparent,
+            currencyTabHeight: 100,
+            showHeading: true,
+            inrRate: 77.0,
+            
+            onCoinTap: (ctx, coin) => print("Quelle fabuleuse crypto le ${coin.name}"),
+          ),
+        ));
   }
 }
